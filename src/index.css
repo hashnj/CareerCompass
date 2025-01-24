@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark{
+    --secondary:59, 136, 242;
+    --background:51, 51, 51;
+    --backgrounds:41, 41, 41;
+    --text:255, 255, 255;
+  }
+  .light{
+    --secondary:159, 136, 242;
+    --background:250, 250, 250;
+    --backgrounds:226, 232, 240;
+    --text:17, 24, 39;
+  }
+
+  .no-scroll::-webkit-scrollbar {
+    display: none;
+}
