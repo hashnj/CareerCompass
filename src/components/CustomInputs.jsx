@@ -9,7 +9,7 @@ import {
 
   
   // eslint-disable-next-line react/prop-types
-  const CustomInput = ({ control, name, label, placeholder, required = false, disabled = false }) => {
+  const CustomInput = ({ control, name, label, type = 'text', placeholder, required = false, disabled = false }) => {
     return (
       <FormField
         control={control}
@@ -23,7 +23,7 @@ import {
                   placeholder={placeholder}
                   disabled={disabled}
                   required={required}
-                  type={name === 'password' ? 'password' : 'text'}
+                  type={type}
                   className='text-16 placeholder:text-16 rounded-lg border border-text/20 text-text focus:ring-primary active:ring-primary placeholder:text-text/60'
                   {...field}
                 />
