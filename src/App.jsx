@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import Contact from "./pages/Contact";
 import Councelling from "./pages/Councelling";
 import MediaUpload from "./pages/Upload";
+import ShowContent from "./pages/DisplayContent";
 
 
 
@@ -62,6 +63,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path='options' element={<CareerOptions/>}/>
             <Route path='upload' element={<MediaUpload/>}/>
+            <Route path='view' element={<ShowContent/>}/>
 
           </Route>
         </Routes>
