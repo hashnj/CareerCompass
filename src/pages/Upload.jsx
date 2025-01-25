@@ -28,7 +28,7 @@ const MediaUpload = () => {
       });
       toast.success('Media uploaded successfully!');
       console.log('Response:', response.data);
-      reset(); // Reset form fields
+      reset(); 
     } catch (error) {
       console.error('Error uploading media:', error);
       toast.error('Failed to upload media.');
