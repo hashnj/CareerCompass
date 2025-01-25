@@ -17,6 +17,7 @@ import CareerOptions from "./pages/CareerOptions";
 import Dashboard from "./pages/Dashboard";
 import Contact from "./pages/Contact";
 import Councelling from "./pages/Councelling";
+import MediaUpload from "./pages/Upload";
 
 
 
@@ -60,6 +61,7 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
             <Route path='options' element={<CareerOptions/>}/>
+            <Route path='upload' element={<MediaUpload/>}/>
 
           </Route>
         </Routes>

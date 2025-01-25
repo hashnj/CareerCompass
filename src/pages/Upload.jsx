@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axiosInstance from '../../lib/axiosInstance';
+import axiosInstance from '../lib/axiosInstance';
 import { toast } from 'react-toastify';
 
 const MediaUpload = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
@@ -17,7 +17,7 @@ const MediaUpload = () => {
       formData.append('video', data.video[0]); 
     }
 
-    if (data.displayImage[0]) {
+    if (data.displayImage?.[0]) {
       formData.append('displayImage', data.displayImage[0]); 
     }
 
@@ -38,35 +38,38 @@ const MediaUpload = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 bg-white rounded shadow">
-      <h1 className="text-xl font-semibold text-gray-800 mb-4">Upload Media</h1>
+    <div className="w-full min-h-screen flex flex-col justify-center max-w-md mx-auto p-4 bg-white rounded shadow">
+      <h1 className="text-2xl font-semibold text-primary  mb-4">Upload Media</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Title</label>
           <input
-            {...register('title', { required: true })}
+            {...register('title', { required: 'Title is required' })}
             type="text"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+            className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             placeholder="Enter video title"
           />
+          {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Description</label>
           <textarea
-            {...register('description', { required: true })}
+            {...register('description', { required: 'Description is required' })}
             rows="3"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+            className="mt-1 block p-2 w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             placeholder="Enter video description"
           ></textarea>
+          {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Video</label>
           <input
-            {...register('video', { required: true })}
+            {...register('video', { required: 'Video is required' })}
             type="file"
             accept="video/*"
             className="mt-1 block w-full"
           />
+          {errors.video && <p className="text-red-500 text-xs mt-1">{errors.video.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Display Image (Optional)</label>

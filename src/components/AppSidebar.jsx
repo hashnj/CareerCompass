@@ -41,6 +41,7 @@ const StudentItems=[
     { title: "Career Councelling", url: "/councelling", icon: GoCommentDiscussion },
     { title: "Career Options", url: "/options", icon:AiOutlineProfile  },
     { title: "View Interviews", url: "/view", icon: FaVideo },
+    { title: "Upload Content", url: "/upload", icon: FaVideo },
     { title: "Scheduled Events", url: "/events", icon:FaCalendarAlt  },
     // { title: "test", url: "/test", icon: GrTest },
   ];

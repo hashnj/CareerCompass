@@ -116,13 +116,27 @@ const AuthForm = ({ type }) => {
               className="space-y-8"
             >
               <CustomInput
-                control={form.control}
-                name="profilePicture"
-                label="Profile Picture (Optional)"
-                type="file"
-                placeholder="Upload Your Profile Picture"
-                accept="image/*"
-              />
+      control={form.control}
+      name="email"
+      label="Email"
+      placeholder="Enter Your Email"
+      defaultValue={user?.email} 
+      disabled 
+    />
+    
+
+    <div>
+      <label className="block text-sm font-medium">Profile Picture (Optional)</label>
+      <input
+        type="file"
+        accept="image/*"
+        className="mt-1 block w-full rounded-md border border-text/20 p-2 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+        onChange={(e) => {
+          const file = e.target.files[0];
+          form.setValue('profilePicture', file); // Manually bind file to the form
+        }}
+      />
+    </div>
               <div className='flex w-full gap-1 '>
                 <div className='w-full'>
               <CustomInput
