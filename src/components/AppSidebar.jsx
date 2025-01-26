@@ -31,15 +31,18 @@ import { IoEarth } from 'react-icons/io5'
 import { MdOutlinePermPhoneMsg } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import axiosInstance from "../lib/axiosInstance";
+import { MdOutlineContactPage } from "react-icons/md";
 // import { GrTest } from "react-icons/gr";
 
 const StudentItems=[
   {title:"Dashboard" , url:'/student/dashboard', icon:LuLayoutDashboard},
+  {title:"Skill Gap Analysis" , url:'/resumeAnalyser', icon:MdOutlineContactPage },
+  { title: "Career Councelling", url: "/councelling", icon: GoCommentDiscussion },
+  { title: "Career Options", url: "/options", icon:AiOutlineProfile  },
+
 ]
 
   const mentorItems = [
-    { title: "Career Councelling", url: "/councelling", icon: GoCommentDiscussion },
-    { title: "Career Options", url: "/options", icon:AiOutlineProfile  },
     { title: "View Interviews", url: "/view", icon: FaVideo },
     { title: "Upload Content", url: "/upload", icon: FaVideo },
     { title: "Scheduled Events", url: "/events", icon:FaCalendarAlt  },

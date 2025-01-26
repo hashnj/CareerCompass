@@ -60,10 +60,8 @@ const AuthForm = ({ type }) => {
       const response = await axiosInstance.post('/auth/signin', data);
       console.log(response.data);
       setUser(response.data);
-      toast.success(response.data.message);
-      if (response && user.role !== 'mentor') {
-        nav('/');
-      }
+      toast.success('signed in successfully!');
+      nav('/');
     } catch (error) {
       console.error('Login error:', error);
       toast.error('Failed to sign in.');
