@@ -38,7 +38,7 @@ const Main = () => {
         <div className="w-4/5 m-auto">
             <h2 className='font-extrabold text-primary text-2xl'>Your Path to a Successful Career</h2>
             <p className=''>Discover your strengths and find the right career path with Compass.</p>
-            <button onClick={()=>{nav('auth/register')}} className="bg-primary p-4 py-2 m-4 rounded-md text-white">Get Started</button>
+            <button onClick={()=>{nav('/options')}} className="bg-primary p-4 py-2 m-4 rounded-md text-white">Get Started</button>
             <h5 className='text-text/60 text-sm'>Career Assessment | Personalised Guidance | Profile Building | Virtual Internships | <br>
             </br> College Roadmap Planning | College Applications | Scholarship Hunt</h5>
             <div className="homepage-banner">
@@ -103,7 +103,7 @@ const Main = () => {
             Customized, professional services &amp; assistance for all participants in the career guidance journey.
             </p>
         </div>
-       <div className="container  detail-box3">
+       <div className=" detail-box3">
             <ul className='flex mt-5 mx-auto w-2/3 md:w-4/5 gap-1 border-text/20 border border-b-0 justify-center'>
                     <li className={`w-1/3 p-2 rounded-tl-xl py-4 md:py-2 cursor-pointer shadow-md flex flex-col justify-center items-center text-lg hover:bg-pink-50  text-gray-500 ${student?' shadow-sm text-gray-800 text-text bg-pink-100 text-lg':''} `} onClick={()=>students()} id="student">
                     <img alt="Icon representing students" height="90" src={image6} width="60"/>

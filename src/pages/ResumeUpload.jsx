@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../lib/axiosInstance"; // import axiosInstance
 
 const ResumeUpload = () => {
-  const [resumes, setResumes] = useState([]);
+  const [resumes, setResumes] = useState([]);  
   const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState(null);
 
   const fetchResumes = async () => {
     try {
-      const response = await axios.get("/resumes");
-      setResumes(response.data);
+      const response = await axiosInstance.get("/resumes"); // Using axiosInstance
+      setResumes(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       setError("Failed to fetch resumes.",err);
     }
@@ -27,10 +27,10 @@ const ResumeUpload = () => {
     formData.append("resume", selectedFile);
 
     try {
-      await axios.post("/resumes/upload", formData, {
+      await axiosInstance.post("/resumes/upload", formData, { // Using axiosInstance
         headers: { "Content-Type": "multipart/form-data" },
       });
-      fetchResumes(); // Refresh resumes after upload
+      fetchResumes(); 
       setSelectedFile(null);
     } catch (err) {
       setError("Failed to upload resume.",err);
@@ -38,8 +38,8 @@ const ResumeUpload = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Upload Your Resume</h1>
+    <div className="mx-auto w-full text-text bg-background rounded-lg  p-4">
+      <h1 className="text-3xl font-bold mb-4">Upload Your Resume to Get Analyzed</h1>
       <form onSubmit={handleUpload} className="mb-4">
         <input
           type="file"
@@ -57,19 +57,23 @@ const ResumeUpload = () => {
 
       <h2 className="text-xl font-bold mt-8">Uploaded Resumes</h2>
       <ul className="mt-4">
-        {resumes.map((resume) => (
-          <li
-            key={resume._id}
-            className="bg-gray-100 p-4 mb-2 rounded-lg shadow-md"
-          >
-            <p>
-              <strong>File Name:</strong> {resume.fileName}
-            </p>
-            <p>
-              <strong>Skills:</strong> {resume.skills.join(", ")}
-            </p>
-          </li>
-        ))}
+        {resumes.length > 0 ? (
+          resumes.map((resume) => (
+            <li
+              key={resume._id}
+              className="bg-backgrounds w-fit p-4 mb-2 rounded-lg shadow-md"
+            >
+              <p>
+                <strong>File Name:</strong> {resume.fileName}
+              </p>
+              <p>
+                <strong>Skills:</strong> {resume.skills.join(", ")}
+              </p>
+            </li>
+          ))
+        ) : (
+          <p>No resumes uploaded yet.</p>
+        )}
       </ul>
     </div>
   );

@@ -1140,14 +1140,14 @@ const CareerOptions = () => {
     // const nav = useNavigate();
         
     return (
-      <div className="p-2 bg-background/70 min-h-screen">
+      <div className="p-2 bg-backgrounds min-h-screen">
       <div>
         <h1 className="text-primary font-extrabold text-3xl p-2">Career Options</h1>
       </div>
       <div className="flex p-4">
         <input
           type="text"
-          className="border-2 border-text/30 rounded-full focus:border-primary active:ring-0 text-2xl p-3 text-text  w-full bg-backgrounds/50"
+          className="border-2 border-text/30 rounded-2xl focus:border-primary active:ring-0 text-2xl p-3 text-text  w-full bg-background/70"
           placeholder="Search Careers..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)} // Update search query on input
@@ -1168,7 +1168,7 @@ const CareerOptions = () => {
           ) : (
             <div className="p-2" key={index}>
               <div
-                className="cursor-pointer bg-backgrounds rounded-md text-xl font-bold p-4 hover:bg-backgrounds/80 transition duration-300 text-text"
+                className="cursor-pointer bg-background shadow-sm shadow-text hover:shadow  rounded-md text-xl font-bold p-4 hover:bg-background/80 transition duration-300 text-text"
               >
                 <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
               </div>

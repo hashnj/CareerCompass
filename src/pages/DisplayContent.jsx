@@ -26,24 +26,35 @@ const ShowContent = () => {
   }, []);
 
   if (isLoading) {
-    return <p className="text-center text-gray-700">Loading videos...</p>;
+    return (
+      <div className='w-full min-h-screen flex justify-center items-center bg-backgrounds'>
+        <p className="text-center text-gray-700">Loading videos...</p>
+        </div>
+    );
   }
 
   if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
+    return (
+      <div className='w-full min-h-screen flex justify-center items-center bg-backgrounds'>
+        <p className=" text-red-500">{error}</p>
+        </div>
+    );
   }
 
   if (!videos.length) {
-    return <p className="text-center text-gray-700">No videos available.</p>;
+    return(
+    <div className='w-full min-h-screen bg-backgrounds'>
+      <p className="text-center text-gray-700">No videos available.</p>
+    </div>
+    );
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-6 bg-white rounded shadow">
+    <div className="w-full min-h-screen h-full max-w-5xl mx-auto p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Uploaded Videos</h1>
       <ul className="space-y-4">
         {videos.map((video) => (
           <li key={video.id} className="flex items-start gap-4 p-4 border rounded-lg shadow-sm">
-            {/* Thumbnail */}
             {video.displayImage ? (
               <img
                 src={`data:image/jpeg;base64,${video.displayImage}`}

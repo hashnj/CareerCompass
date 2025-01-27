@@ -32,6 +32,7 @@ import { MdOutlinePermPhoneMsg } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import axiosInstance from "../lib/axiosInstance";
 import { MdOutlineContactPage } from "react-icons/md";
+import { IoIosBriefcase } from "react-icons/io";
 // import { GrTest } from "react-icons/gr";
 
 const StudentItems=[
@@ -39,6 +40,7 @@ const StudentItems=[
   {title:"Skill Gap Analysis" , url:'/resumeAnalyser', icon:MdOutlineContactPage },
   { title: "Career Councelling", url: "/councelling", icon: GoCommentDiscussion },
   { title: "Career Options", url: "/options", icon:AiOutlineProfile  },
+  { title: "Available Jobs", url: "/jobs", icon:IoIosBriefcase   },
 
 ]
 

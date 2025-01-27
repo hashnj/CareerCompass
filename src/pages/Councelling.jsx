@@ -38,7 +38,7 @@ const Councelling = () => {
   };
 
   return (
-    <div className="bg-background/70 w-full h-screen">
+    <div className="bg-backgrounds w-full h-screen">
       {success ? (
         <div className="bg-background h-screen flex justify-center items-center pt-0 text-primary text-3xl text-center p-4">
           <TiTickOutline />
@@ -48,12 +48,17 @@ const Councelling = () => {
       <form
         onSubmit={onSubmit}
         method="POST"
-        className="flex flex-col items-center justify-center h-full p-4"
+        className="flex flex-col items-center pt-12 h-full p-4"
         encType="multipart/form-data"
         name="EmailForm"
       >
-        <h1 className="text-3xl font-semibold text-primary mb-4">Councelling</h1>
-        <p className="text-text">Reach us for personal councelling</p>
+        <h1 className="text-3xl font-bold underline underline-offset-2 text-primary mb-4">Councelling</h1>
+        <p className="text-text text-center font-thin mb-6 max-w-lg">
+            We provide personalized career counseling to help you make informed
+            decisions about your professional path. For specific guidance and
+            tailored advice, please fill out the form below, and our team will
+            get back to you. You can also reach out to us personally if needed.
+          </p>
         <input
           type="text"
           name="name"

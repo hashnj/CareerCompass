@@ -1,12 +1,14 @@
 import  { useEffect, useState } from 'react'
-import { FaCircleNotch, FaFlag } from 'react-icons/fa'
+import { FaCircleNotch, FaFlag, FaPlus } from 'react-icons/fa'
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { auth, authCheck } from '../store/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const user = useRecoilValueLoadable(authCheck);
     const [data,setData]= useState(null); 
     const authh = useRecoilValue(auth);
+    const nav = useNavigate();
 
   useEffect(()=>{
     if(user.state=='hasValue'){
@@ -17,8 +19,8 @@ const Dashboard = () => {
 
   return (
   
-<div className="container text-text p-2 bg-backgrounds ">
-   <div className=" ">
+<div className=" w-full text-text p-2 bg-backgrounds ">
+   {/* <div className=""> */}
     <h1 className='text-xl mb-2.5'>
      Hi There! {data && data.firstname}
     </h1>
@@ -69,6 +71,9 @@ const Dashboard = () => {
       </button>
      </div>
     </div>
+    <div className='bg-background rounded-xl text-xl p-5 mb-5 flex items-center justify-between shadow-xl'>
+      <div><button className='p-2 bg-primary rounded-xl mx-2 text-lg hover:bg-primary/70  ' onClick={()=> nav('/resumeAnalyser')}> <FaPlus/> </button>Add Resume for Skill Gap Analysis </div> <span className='font-thin text-sm'>(if Applicable)</span>
+    </div>
     <div className="banner bg-background rounded-xl p-5 mb-5 flex items-center justify-between shadow-xl">
      <div>
       <h2 className='mb-2.5 text-xl'>
@@ -77,7 +82,7 @@ const Dashboard = () => {
       <p className='mb-5 text-text/70'>
        Experience multiple careers to identify the one that you like the best and get certified in the process!
       </p>
-      <button className="btn p-2 rounded-md text-white bg-primary" href="#">
+      <button className="btn p-2 rounded-md text-text bg-primary" href="#">
        Learn More
       </button>
      </div>
@@ -112,7 +117,7 @@ const Dashboard = () => {
         </p>
        </div>
     </div>
-   </div>
+   {/* </div> */}
   </div>
 )
 }

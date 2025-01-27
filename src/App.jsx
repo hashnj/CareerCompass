@@ -20,6 +20,9 @@ import Councelling from "./pages/Councelling";
 import MediaUpload from "./pages/Upload";
 import ShowContent from "./pages/DisplayContent";
 import SkillGapAnalysis from "./pages/SkillGapAnalysis";
+import Jobs from "./pages/Jobs";
+import ScheduledEvents from "./pages/ScheduledEvents";
+import Mentors from "./pages/Mentors";
 
 
 
@@ -57,6 +60,9 @@ function App() {
             <Route path='explore' element={<CareerOptions/>}/>
             <Route path='contact' element={<Contact/>}/>
             <Route path='councelling' element={<Councelling/>}/>
+            <Route path='jobs' element={<Jobs/>}/>
+            <Route path='events' element={<ScheduledEvents/>}/>
+            <Route path='mentor' element={<Mentors/>}/>
                             
             <Route path="*" element={<NotFound />} />
 
