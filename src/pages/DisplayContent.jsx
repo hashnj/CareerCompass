@@ -6,13 +6,14 @@ const ShowContent = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         setIsLoading(true);
-        const response = await axiosInstance.get('/media/list'); // Backend endpoint to get videos
-        setVideos(response.data.videos); // Assuming API returns { videos: [...] }
+        const response = await axiosInstance.get(`/media/list?page=${page}`);
+        setVideos(response.data.videos || []); // Assuming API returns { videos: [...] }
       } catch (err) {
         console.error('Error fetching videos:', err);
         setError('Failed to load videos.');
@@ -23,65 +24,76 @@ const ShowContent = () => {
     };
 
     fetchVideos();
-  }, []);
+  }, [page]);
 
   if (isLoading) {
     return (
-      <div className='w-full min-h-screen flex justify-center items-center bg-backgrounds'>
+      <div className="w-full min-h-screen flex justify-center items-center bg-gray-50">
         <p className="text-center text-gray-700">Loading videos...</p>
-        </div>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <div className='w-full min-h-screen flex justify-center items-center bg-backgrounds'>
-        <p className=" text-red-500">{error}</p>
-        </div>
+      <div className="w-full min-h-screen flex justify-center items-center bg-gray-50">
+        <p className="text-center text-red-500">{error}</p>
+      </div>
     );
   }
 
   if (!videos.length) {
-    return(
-    <div className='w-full min-h-screen bg-backgrounds'>
-      <p className="text-center text-gray-700">No videos available.</p>
-    </div>
+    return (
+      <div className="w-full min-h-screen bg-gray-50 flex justify-center items-center">
+        <p className="text-center text-gray-700">No videos available.</p>
+      </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen h-full max-w-5xl mx-auto p-6 bg-white rounded shadow">
+    <div className="w-full min-h-screen max-w-5xl mx-auto p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Uploaded Videos</h1>
-      <ul className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {videos.map((video) => (
-          <li key={video.id} className="flex items-start gap-4 p-4 border rounded-lg shadow-sm">
+          <div key={video.id} className="p-4 border rounded-lg shadow">
             {video.displayImage ? (
               <img
                 src={`data:image/jpeg;base64,${video.displayImage}`}
                 alt={video.title}
-                className="w-24 h-24 object-cover rounded"
+                className="w-full h-48 object-cover rounded"
               />
             ) : (
-              <div className="w-24 h-24 bg-gray-300 rounded flex items-center justify-center">
+              <div className="w-full h-48 bg-gray-300 rounded flex items-center justify-center">
                 <span className="text-gray-500 text-sm">No Thumbnail</span>
               </div>
             )}
-
-            {/* Video Details */}
-            <div className="flex-1">
-              <h2 className="text-lg font-semibold text-gray-800">{video.title}</h2>
-              <p className="text-sm text-gray-600">{video.description}</p>
-              <a
-                href={`data:video/mp4;base64,${video.videoData}`}
-                download={`${video.title}.mp4`}
-                className="text-blue-500 hover:underline text-sm"
-              >
-                Download Video
-              </a>
-            </div>
-          </li>
+            <h2 className="text-lg font-semibold text-gray-800 mt-4">{video.title}</h2>
+            <p className="text-sm text-gray-600">{video.description}</p>
+            <a
+              href={`/media/stream/${video.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline text-sm mt-2 block"
+            >
+              Watch Video
+            </a>
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          className="px-4 py-2 bg-gray-200 rounded"
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => setPage((prev) => prev + 1)}
+          className="px-4 py-2 bg-gray-200 rounded ml-2"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

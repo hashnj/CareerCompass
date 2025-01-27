@@ -10,7 +10,7 @@ const MentorCard = ({ mentor }) => {
         //   className="w-full h-64 object-cover"
         // />
       )} */}
-      <div className="w-20 rounded-full p-2 flex justify-center items-center ml-3 mt-7 h-12 bg-primary">{mentor.userId.firstName[0]}{mentor.userId.lastName[0]}</div>
+      <div className="w-12 rounded-full p-2 flex justify-center items-center ml-3 mt-7 h-12 bg-primary">{mentor.userId.firstName[0]}{mentor.userId.lastName[0]}</div>
       <div className="p-4">
         <h2 className="text-2xl font-bold">{mentor.userId.firstName} {mentor.userId.lastName}</h2>
         <p className="text-lg text-primary/70">{mentor.jobTitle}</p>
